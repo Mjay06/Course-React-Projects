@@ -1,0 +1,195 @@
+@import url("https://fonts.googleapis.com/css2?family=Boogaloo&family=Changa+One&family=Encode+Sans:wght@300;700&family=Inria+Serif:wght@300;700&family=Josefin+Sans:wght@400;700&family=Urbanist:wght@100;400&display=swap");
+body {
+  margin: 0;
+  padding: 4rem;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+.App {
+  display: flex;
+  position: relative;
+  top: 50;
+  left: 50;
+  justify-content: space-around;
+}
+.container {
+  border-radius: 0.3125rem;
+  background: #fdfdfd;
+  box-shadow: 2px 2px 4px 5px rgba(0, 0, 0, 0.07);
+  padding: 2rem 1rem;
+}
+.balcontainer {
+  width: 28.5rem;
+  border-radius: 0.25rem;
+  background: #f0f0f0;
+  padding: 1rem;
+  margin-bottom: 3rem;
+}
+.balancebox {
+  display: flex;
+  align-items: center;
+}
+.balcontainer > h3 {
+  color: #000;
+  font-family: Encode Sans;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+}
+.balancebox > h1 {
+  color: #000;
+  font-family: Encode Sans;
+  font-size: 1.875rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-left: 0.3rem;
+}
+.balancebox > span {
+  color: #000;
+  font-family: Encode Sans;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.list {
+  display: flex;
+  width: 28.3125rem;
+  padding: 1rem;
+}
+.infos {
+  width: 100%;
+}
+.image {
+  width: 10rem;
+  height: 6rem;
+  margin-right: 1rem;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.image > img {
+  width: 100%;
+}
+.inventname {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.inventname > h1 {
+  color: #000;
+  font-family: Encode Sans;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+button {
+  padding: 0.4rem 1rem;
+  border-radius: 0.25rem;
+  background: #000;
+  color: white;
+  outline: none;
+  border: none;
+  color: #fdfdfd;
+  font-family: Encode Sans;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  justify-self: end;
+}
+
+.inventquant {
+  width: 21.8125rem;
+  padding: 0 0rem;
+  border-radius: 0.25rem;
+  background: #f0f0f0;
+  display: flex;
+  justify-content: space-around;
+}
+.inventquant > h4 {
+  color: #000;
+  font-family: Encode Sans;
+  font-size: 0.7rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+}
+.cards {
+  overflow: scroll;
+  width: 100%;
+  height: 300px;
+  margin-bottom: 2rem;
+}
+.formadd {
+  border-radius: 0.3125rem;
+  background: #fdfdfd;
+  box-shadow: 2px 2px 4px 5px rgba(0, 0, 0, 0.07);
+  margin-top: 3rem;
+  padding: 2rem 1rem;
+}
+.formaddinput {
+  width: 5.8125rem;
+  height: 1.5rem;
+  border-radius: 0.25rem;
+  background: #f0f0f0;
+  border: none;
+}
+input:focus {
+  outline: none;
+}
+.upperform {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+label {
+  color: #000;
+  font-family: Encode Sans;
+  font-size: 0.9rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+}
+.lowerform {
+  margin-bottom: 1rem;
+}
+.formupdate {
+  border-radius: 0.3125rem;
+  background: #fdfdfd;
+  box-shadow: 2px 2px 4px 5px rgba(0, 0, 0, 0.07);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.formupdate > h1 {
+  color: #000;
+  font-family: Encode Sans;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal; 
+  text-align: center;
+}
+.formupdate > label{
+  margin-bottom: 2rem;
+}
+.updateform{
+  height: 1.8rem;
+  border-radius: 0.25rem;
+  background: #f0f0f0;
+  border: none; 
+  padding: 0 0 0 1rem;
+}
+p{
+  cursor: pointer;
+}
