@@ -13,7 +13,8 @@ import { supabaseUrl } from "../../services/supabase";
 import { useCreateCabin } from "./useCreateCabin";
 import { useEditCabin } from "./useEditCabin";
 
-function CreateCabinForm({ cabintoEdit = {} }) {
+function CreateCabinForm({ cabintoEdit = {}, onClose }) {
+  console.log(onClose);
   const { id: editId, ...editValues } = cabintoEdit;
   const isEditSession = Boolean(editId);
   const { register, handleSubmit, reset, formState, getValues } = useForm({
@@ -21,30 +22,41 @@ function CreateCabinForm({ cabintoEdit = {} }) {
   });
 
   const { errors } = formState;
-  const {isCreating, create} = useCreateCabin()
-  const {isEditing, edit} = useEditCabin()
+  const { isCreating, create } = useCreateCabin();
+  const { isEditing, edit } = useEditCabin();
   const working = isEditing || isCreating;
 
   function onClick(data) {
-    const hasImage = typeof data.image === 'string'
-    const DataUploaded = hasImage ? {...data} : { ...data, image: data.image[0] }
+    const hasImage = typeof data.image === "string";
+    const DataUploaded = hasImage
+      ? { ...data }
+      : { ...data, image: data.image[0] };
     console.log(data);
-    const parameters = { newCabin: DataUploaded, id:editId}
+    const parameters = { newCabin: DataUploaded, id: editId };
     if (isEditSession) {
-      console.log("na me de run")
+      console.log("na me de run");
       edit(parameters);
     } else {
-      console.log(data.image)
-      create({ ...data, image: data.image[0] },{
-        onSuccess: () => reset()
-      });
+      console.log(data.image);
+      create(
+        { ...data, image: data.image[0] },
+        {
+          onSuccess: () => {
+            reset();
+            onClose?.();
+          },
+        }
+      );
     }
   }
   function onError(error) {
     console.log(error);
   }
   return (
-    <Form onSubmit={handleSubmit(onClick, onError)}>
+    <Form
+      onSubmit={handleSubmit(onClick, onError)}
+      type={onClose ? "modal" : "regular"}
+    >
       <FormRow label="Cabin name" error={errors?.name?.message}>
         <Input
           type="text"
@@ -92,7 +104,8 @@ function CreateCabinForm({ cabintoEdit = {} }) {
             required: "This field is required",
             validate: (value) => {
               return (
-                value <= +getValues("regularPrice") || "Discount more than price"
+                value <= +getValues("regularPrice") ||
+                "Discount more than price"
               );
             },
           })}
@@ -123,7 +136,9 @@ function CreateCabinForm({ cabintoEdit = {} }) {
 
       <FormRow>
         {/* type is an HTML attribute! */}
-        <Button type="reset">Cancel</Button>
+        <Button type="reset" onClick={() => onClose?.()}>
+          Cancel
+        </Button>
         <Button disabled={working}>
           {isEditSession ? "Edit Cabin" : "Create New Cabin"}
         </Button>
