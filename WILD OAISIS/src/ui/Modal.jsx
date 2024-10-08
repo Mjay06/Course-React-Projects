@@ -1,6 +1,7 @@
 import { HiXMark } from "react-icons/hi2";
 import styled from "styled-components";
 import { createPortal } from "react-dom";
+import { cloneElement, createContext, useContext, useState } from "react";
 
 const StyledModal = styled.div`
   position: fixed;
@@ -50,18 +51,62 @@ const Button = styled.button`
     color: var(--color-grey-500);
   }
 `;
-function Modal({ children, onClose }) {
-  return createPortal(
-    <Overlay>
-      <StyledModal>
-        <Button>
-          <HiXMark onClick={onClose} />
-        </Button>
-        <div>{children}</div>
-      </StyledModal>
-    </Overlay>,
-    document.body
+//create context
+const ModalContext = createContext();
+
+// create parent component
+function Modal({ children }) {
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  return (
+    <ModalContext.Provider value={{ setIsOpenModal, isOpenModal }}>
+      {children}
+    </ModalContext.Provider>
   );
 }
+
+//create children component for implementing certain tasks
+function Open({ children, opens }) {
+  const { setIsOpenModal } = useContext(ModalContext);
+  return cloneElement(children, {
+    onClick: () => setIsOpenModal(opens),
+  });
+}
+
+function Window({ children, name }) {
+  const { setIsOpenModal, isOpenModal } = useContext(ModalContext);
+  if (isOpenModal !== name) return null;
+  return (
+    isOpenModal &&
+    createPortal(
+      <Overlay>
+        <StyledModal>
+          <Button>
+            <HiXMark onClick={() => setIsOpenModal(false)} />
+          </Button>
+          <div>{children}</div>
+        </StyledModal>
+      </Overlay>,
+      document.body
+    )
+  );
+}
+
+//rename to be a variable of parent component
+Modal.Open = Open;
+Modal.Window = Window;
+
+// function Modal({ children, onClose }) {
+//   return createPortal(
+//     <Overlay>
+//       <StyledModal>
+//         <Button>
+//           <HiXMark onClick={onClose} />
+//         </Button>
+//         <div>{children}</div>
+//       </StyledModal>
+//     </Overlay>,
+//     document.body
+//   );
+// }
 
 export default Modal;
