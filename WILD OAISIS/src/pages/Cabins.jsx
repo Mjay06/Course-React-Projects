@@ -1,24 +1,24 @@
 import Heading from "../ui/Heading";
 import Row from "../ui/Row";
-import CabinTable from "../features/cabins/CabinTable-v1"
+import CabinTable from "../features/cabins/CabinTable-v1";
 import { useState } from "react";
-import Button from "../ui/Button"
-import CreateCabinForm from "../features/cabins/CreateCabinForm"
+import Button from "../ui/Button";
+import CreateCabinForm from "../features/cabins/CreateCabinForm";
 import AddCabin from "../features/cabins/AddCabin";
-
+import TableOperations from "../ui/TableOperations";
+import CabinTableOperations from "../features/cabins/CabinTableOperations";
 
 function Cabins() {
-
   return (
     <>
       <Row type="horizontal">
         <Heading as="h1">All cabins</Heading>
-        <p>Filter/Sort</p>
+        <CabinTableOperations />
       </Row>
       <Row>
         <CabinTable />
         <AddCabin />
-      </Row> 
+      </Row>
     </>
   );
 }

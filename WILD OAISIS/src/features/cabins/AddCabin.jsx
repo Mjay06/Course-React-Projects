@@ -6,21 +6,16 @@ import { useState } from "react";
 
 function AddCabin() {
   return (
-    <Modal>
-      <Modal.Open opens='Cabin-form'>
-        <Button> Add new cabin </Button>
-      </Modal.Open>
-      <Modal.Window name='Cabin-form'>
-        <CreateCabinForm />
-      </Modal.Window>
-
-      <Modal.Open opens='Table'>
-        <Button> Show Table </Button>
-      </Modal.Open>
-      <Modal.Window name='Table'>
-        <CabinTable />
-      </Modal.Window>
-    </Modal>
+    <div>
+      <Modal>
+        <Modal.Open opens="Cabin-form">
+          <Button> Add new cabin </Button>
+        </Modal.Open>
+        <Modal.Window name="Cabin-form">
+          <CreateCabinForm />
+        </Modal.Window>
+      </Modal>
+    </div>
   );
 }
 

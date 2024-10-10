@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const TableOperations = styled.div`
   display: flex;
@@ -7,3 +7,7 @@ const TableOperations = styled.div`
 `;
 
 export default TableOperations;
+
+
+
+

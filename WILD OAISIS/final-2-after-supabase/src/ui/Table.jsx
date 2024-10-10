@@ -1,4 +1,6 @@
+import { createContext, useContext } from "react";
 import styled from "styled-components";
+import CabinRow from "../../../src/features/cabins/CabinRow";
 
 const StyledTable = styled.div`
   border: 1px solid var(--color-grey-200);
@@ -57,3 +59,53 @@ const Empty = styled.p`
   text-align: center;
   margin: 2.4rem;
 `;
+
+const TableHeader = styled.header`
+  display: grid;
+  grid-template-columns: 0.6fr 1.8fr 2.2fr 1fr 1fr 1fr;
+  column-gap: 2.4rem;
+  align-items: center;
+
+  background-color: var(--color-grey-50);
+  border-bottom: 1px solid var(--color-grey-100);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  font-weight: 600;
+  color: var(--color-grey-600);
+  padding: 1.6rem 2.4rem;
+`;
+
+const TableContext = createContext();
+
+
+export function Table({ columns, children }) {
+  return (
+    <TableContext.Provider value={{ columns }}>
+      <StyledTable role="table">{children}</StyledTable>
+    </TableContext.Provider>
+  );
+}
+
+function Header({ children }) {
+
+  return <TableHeader> {children}</TableHeader>;
+}
+
+function Row({ cabin }) {
+  const { columns } = useContext(TableContext);
+  return (
+    <StyledRow role="row" columns={columns}>
+      {" "}
+      <CabinRow cabin={cabin} />{" "}
+    </StyledRow>
+  );
+}
+
+function Body({ data, render }) {
+  if (!data.length) return <Empty />;
+  return <StyledBody> {data.map(render)}</StyledBody>;
+}
+
+Table.Header = Header;
+Table.Row = Row;
+Table.Body = Body;
